@@ -16,13 +16,28 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Online Toilet QR access",
+      default_version='v1',
+      description="Some description",
+    ),
+   public=True,
+)
 
 urlpatterns = [
+    path('', schema_view.with_ui()),
     path('admin/', admin.site.urls),
+    path('auth/', include('applications.accounts.urls')),
+    path('adds/', include('applications.advertisements.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-admin.site.site_header = 'Dordoy'
-admin.site.index_title = 'Dordoy Administration'
-admin.site.site_title = 'Online-Dordoy'
+admin.site.site_header = 'Bio Toilets'
+admin.site.index_title = 'Administration'
+admin.site.site_title = 'Online-Toilets'

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #libs
     'rest_framework',
+    'drf_yasg',
 
 
     #apps

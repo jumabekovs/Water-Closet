@@ -4,9 +4,11 @@ from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
 
+from dordoy.settings import ALLOWED_HOSTS
+
 
 class QRcode(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(default='http://localhost:8000/' + '/watch-video/', max_length=90)
     qr_code = models.ImageField(upload_to='qrcodes', blank=True)
 
     def __str__(self):
@@ -14,7 +16,7 @@ class QRcode(models.Model):
 
     def save(self, *args, **kwargs):
         qrcode_img = qrcode.make(self.name)
-        canvas = Image.new('RGB', (300, 300), 'white')
+        canvas = Image.new('RGB', (350, 350), 'white')
         canvas.paste(qrcode_img)
         fname = f'qr_code-{self.name}.png'
         buffer = BytesIO()
