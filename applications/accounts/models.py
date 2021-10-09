@@ -4,7 +4,8 @@ from django.core.mail import send_mail
 from django.core.validators import RegexValidator
 from django.db import models
 
-from dordoy.settings import EMAIL_HOST_USER, ALLOWED_HOST
+from myproject.settings import EMAIL_HOST_USER
+
 
 
 class UserManager(BaseUserManager):
@@ -69,7 +70,7 @@ class User(AbstractBaseUser):
     def send_activation_email(self):
         message = f"""
         Благодарим Вас за регистрацию на нашем сайте.
-        Ваш код активации:  http://{ALLOWED_HOST}/api/v1/auth/activate/{self.activation_code}/
+        Ваш код активации:  http://35.240.203.148/api/v1/auth/activate/{self.activation_code}/
         """
         send_mail('Активация аккаунта',
                   message,

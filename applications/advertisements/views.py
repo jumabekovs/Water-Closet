@@ -1,13 +1,10 @@
-import random
-
-from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from applications.advertisements.models import Advertisement
-from applications.advertisements.permissions import IsOwnerOrAdmin, IsSeller
+from applications.advertisements.permissions import IsOwnerOrAdmin
 from applications.advertisements.serializers import AdvertisementSerializer
 
 

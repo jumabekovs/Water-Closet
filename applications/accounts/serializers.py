@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model, authenticate
 from django.core.mail import send_mail
 from rest_framework import serializers
 
-from dordoy.settings import EMAIL_HOST_USER, ALLOWED_HOST
+from myproject.settings import EMAIL_HOST_USER
 
 User = get_user_model()
 
@@ -73,7 +73,7 @@ class ForgotPasswordSerializer(serializers.Serializer):
         user = User.objects.get(email=email)
         user.create_activation_code()
         send_mail('Восстановление пароля',
-                  f'Код для восстановления: http://{ALLOWED_HOST}/api/v1/auth/forgot_password_complete/{user.activation_code}/',
+                  f'Код для восстановления: http://35.240.203.148/api/v1/auth/forgot_password_complete/{user.activation_code}/',
                   EMAIL_HOST_USER,
                   [user.email])
 

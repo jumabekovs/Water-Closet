@@ -4,11 +4,11 @@ from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
 
-from dordoy.settings import ALLOWED_HOSTS
+from myproject.settings import ALLOWED_HOSTS
 
 
 class QRcode(models.Model):
-    name = models.CharField(default='http://localhost:8000/' + '/watch-video/', max_length=90)
+    name = models.CharField(default='http://35.240.203.148/' + '/watch-video/', max_length=90)
     qr_code = models.ImageField(upload_to='qrcodes', blank=True)
 
     def __str__(self):
