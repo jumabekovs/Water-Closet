@@ -37,7 +37,7 @@ class User(AbstractBaseUser):
     phone_regex = RegexValidator(regex=r'^\+?996?\d{9}$',
                                  message="Phone number must start with +996 and up to 9 digits.")
     phone_number = models.CharField(validators=[phone_regex], max_length=13, unique=True)
-    is_seller = models.BooleanField(default=False)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

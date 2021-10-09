@@ -1,6 +1,7 @@
 import random
 
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -25,7 +26,7 @@ class AdvertisementsViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
     search_fields = ['title', ]
     ordering_fields = ['is_validated', ]
-    permission_classes = [IsSeller, ]
+    permission_classes = [IsAuthenticated, ]
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'partial_update', 'destroy'):
